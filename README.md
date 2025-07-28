@@ -53,13 +53,13 @@ Bu proje; sade bir arayüz, güçlü GPT desteği ve kolay özelleştirilebilir 
 
 
 **Geliştirme Fikirleri**
-Kullanıcı giriş sistemi eklenerek kişisel sohbet geçmişi tutulabilir.
-Sohbet geçmişi veritabanında saklanarak önceki konuşmalar görüntülenebilir.
-Farklı alanlara özel (turizm, sağlık, eğitim vb.) yanıt sistemleri geliştirilebilir.
-Çok dilli kullanıcı arayüzü desteği eklenebilir.
-Admin paneli üzerinden sohbet içerikleri analiz edilebilir.
-Sık sorulan sorular (FAQ) menüsü entegre edilerek kullanıcıya hızlı erişim sağlanabilir.
-Mobil uyumlu bir tasarımla daha geniş cihaz desteği sağlanabilir.
-Sesli komut desteği ile konuşma tabanlı etkileşim sağlanabilir.
+-Kullanıcı giriş sistemi eklenerek kişisel sohbet geçmişi tutulabilir.
+-Sohbet geçmişi veritabanında saklanarak önceki konuşmalar görüntülenebilir.
+-Farklı alanlara özel (turizm, sağlık, eğitim vb.) yanıt sistemleri geliştirilebilir.
+-Çok dilli kullanıcı arayüzü desteği eklenebilir.
+-Admin paneli üzerinden sohbet içerikleri analiz edilebilir.
+-Sık sorulan sorular (FAQ) menüsü entegre edilerek kullanıcıya hızlı erişim sağlanabilir.
+-Mobil uyumlu bir tasarımla daha geniş cihaz desteği sağlanabilir.
+-Sesli komut desteği ile konuşma tabanlı etkileşim sağlanabilir.
 
 <img width="1396" height="1074" alt="Screenshot 2025-07-24 at 11 33 33" src="https://github.com/user-attachments/assets/c4e36197-d322-425d-8dbd-56f284ace8e3" />
