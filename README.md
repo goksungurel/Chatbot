@@ -21,8 +21,11 @@ Modüler yapısı sayesinde turizm, eğitim, sağlık gibi farklı sektörlerde 
 **🛠️ Kullanılan Teknolojiler**
 
 Node.js — Sunucu tarafı için
+
 HTML5 & CSS3 — Kullanıcı arayüzü
+
 JavaScript — Dinamik işlevler
+
 OpenAI API — (Opsiyonel) Doğal dil işleme desteği
 
 **📁 Dosya Yapısı**
