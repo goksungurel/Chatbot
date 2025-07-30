@@ -3,19 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Otel Chatbot</title>
+  <title>Akıllı Otel Asistanı</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
+<button id="toggle-theme" class="theme-toggle">🌙</button>
 <div class="chat-container">
-  <div class="chat-header"> Chatbot</div>
-  <div class="chat-messages" id="chat-messages">
-    <div class="bot-message">Merhaba! Size nasıl yardımcı olabilirim?</div>
+  <div class="chat-header">
+    <div class="header-content">
+      <div class="bot-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="header-info">
+        <h3>Akıllı Asistan</h3>
+        <span class="status">
+          <div class="status-dot"></div>
+          Çevrimiçi
+        </span>
+      </div>
+      <div class="header-actions">
+        <button class="action-btn" title="Ayarlar">
+          <i class="fas fa-cog"></i>
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="chat-input">
-    <input type="text" id="user-input" placeholder="Mesajınızı yazın...">
-    <button id="send-btn">Gönder</button>
+
+  <div class="chat-messages" id="chat-messages">
+    <div class="message-wrapper bot-wrapper">
+      <div class="message-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="bot-message">
+        <div class="message-content">
+          Merhaba! 👋 Otel hizmetlerimiz hakkında size nasıl yardımcı olabilirim?
+        </div>
+        <div class="message-time">Şimdi</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="typing-indicator" id="typing-indicator">
+    <div class="typing-avatar">
+      <i class="fas fa-robot"></i>
+    </div>
+    <div class="typing-bubble">
+      <div class="typing-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-container">
+    <div class="emoji-picker" id="emoji-picker">
+      <div class="emoji-picker-header">
+        <span>Emoji Seç</span>
+        <button class="emoji-close-btn" id="emoji-close-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="emoji-categories" id="emoji-categories">
+        <button class="emoji-category-btn active" data-category="smileys">😀</button>
+        <button class="emoji-category-btn" data-category="people">👋</button>
+        <button class="emoji-category-btn" data-category="nature">🌸</button>
+        <button class="emoji-category-btn" data-category="food">🍕</button>
+        <button class="emoji-category-btn" data-category="travel">✈️</button>
+        <button class="emoji-category-btn" data-category="activities">⚽</button>
+        <button class="emoji-category-btn" data-category="objects">💡</button>
+        <button class="emoji-category-btn" data-category="symbols">❤️</button>
+      </div>
+      <div class="emoji-grid" id="emoji-grid">
+        <!-- Emojiler JavaScript ile yüklenecek -->
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Mesajınızı yazın..." autocomplete="off">
+      <button class="emoji-btn" title="Emoji" id="emoji-btn">
+        <i class="fas fa-smile"></i>
+      </button>
+      <button id="send-btn" class="send-btn" title="Gönder">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
   </div>
 </div>
 
