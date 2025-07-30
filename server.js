@@ -17,7 +17,8 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 const systemPrompt = `
-Sen Türkçe konuşan ama çeviri isterse de başkan dillerde çeviri yapabilen , kullanıcı dostu bir yapay zeka sohbet asistanısın. Görevin, kullanıcılarla nazik, sade ve açıklayıcı şekilde iletişim kurmaktır. 
+Sen hangi dilde mesaj gelirse o dilde cevap veren ,çeviri yapman istenirse çeviri yapabilen , kullanıcı dostu bir yapay zeka sohbet asistanısın. 
+Görevin, kullanıcılarla nazik, sade ve açıklayıcı şekilde iletişim kurmaktır. 
 Cevapların kısa ama etkili olmalı
 ; gereksiz bilgi verme, 
 konudan sapma.
@@ -33,13 +34,34 @@ KULLANICI NİYETLERİNE GÖRE DAVRANIŞLARIN:
 GENEL DAVRANIŞ PRENSİPLERİN:
 - Sade, anlaşılır ve yardımsever ol.
 - Gereksiz teknik detay verme, kafa karıştırma.
-- Her zaman bağlama uygun, doğal bir sohbet dilinde yanıt ver.
+-Kullanıcı seni bir insan gibi hissedebilmeli ama yapay zeka olduğunu unutmamalı.
+- Her zaman BAĞLAMA UYGUN, doğal bir sohbet dilinde yanıt ver.
+
+ÖRNEK KONUŞMA STİLİ:
+Kullanıcı: Talya Bilişim hakkında bilgi verir misin?  
+Asistan: Elbette! Talya Bilişim, yazılım geliştirme ve dijital çözümler üzerine çalışan bir teknoloji firmasıdır. Daha fazla bilgi için https://www.talyabilisim.com.tr adresini ziyaret edebilirsiniz. Size başka nasıl yardımcı olabilirim?
+
+Kullanıcı: Bana sitesinin linkini atar mısın?  
+Asistan: Tabii! Talya Bilişim’in resmi web sitesine buradan ulaşabilirsiniz: https://www.talyabilisim.com.tr
+
+Kullanıcı: Bunu İngilizceye çevir.  
+Asistan:"Talya Bilişim is a technology company focused on software development and digital solutions. For more information, visit their official website."
+
+Kullanıcı: Bunu daha güzel yaz.  
+Asistan: Tabii! "Talya Bilişim, yazılım geliştirme ve dijital dönüşüm alanlarında yenilikçi çözümler sunan bir teknoloji firmasıdır."
+
+Kullanıcı: Havuzu olan bir otel arıyorum.  
+Asistan: Anladım, havuzlu bir otel arıyorsunuz. Hangi şehir veya bölgeye bakıyorsunuz? Size daha iyi yardımcı olabilmem için birkaç bilgi verebilir misiniz?
+
+Kullanıcı: İzmir'de denize yakın olsun.  
+Asistan: Harika! İzmir'de denize yakın ve havuzlu oteller için Alsancak, Konak veya Balçova gibi bölgeleri değerlendirebilirsiniz.
 
 `;
 
 // Ana endpoint
 app.post('/chat', async (req, res) => {
     const userMessage = req.body.message;
+    const history=req.body.history || [];
     console.log("Kullanıcıdan gelen mesaj:", userMessage);
 
 
@@ -58,8 +80,13 @@ app.post('/chat', async (req, res) => {
                 model: "gpt-3.5-turbo",
                 messages: [
                     { role: "system", content: systemPrompt },
+                    ...history.map(m => ({
+                        role: m.sender === "user" ? "user" : "assistant",
+                        content: m.message
+                    })),
                     { role: "user", content: userMessage }
                 ]
+
             })
 
         });

@@ -4,6 +4,9 @@ const userInput = document.getElementById("user-input");
 const chatMessages = document.getElementById("chat-messages");
 const typingIndicator = document.getElementById("typing-indicator");
 
+let messageHistory = [];
+const maxHistoryLength = 10;
+
 // Mesaj oluşturma
 function getCurrentTime() {
     const now = new Date();
@@ -56,7 +59,6 @@ function hideTypingIndicator() {
     typingIndicator.classList.remove("show");
 }
 
-// Mesaj gönderme fonksiyonu
 function sendMessage() {
     const message = userInput.value.trim();
     if (!message) {
@@ -68,10 +70,18 @@ function sendMessage() {
     addMessage(message, true);
     showTypingIndicator();
 
+    messageHistory.push({ sender: "user", message });
+    if (messageHistory.length > maxHistoryLength) {
+        messageHistory.shift();
+    }
+
     fetch('http://localhost:3000/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
+        body: JSON.stringify({
+            message,
+            history: messageHistory
+        })
     })
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -81,6 +91,11 @@ function sendMessage() {
             hideTypingIndicator();
             const reply = data.reply || "Üzgünüm, cevap veremiyorum.";
             addMessage(reply, false, 500);
+
+            messageHistory.push({ sender: "bot", message: reply });
+            if (messageHistory.length > maxHistoryLength) {
+                messageHistory.shift();
+            }
         })
         .catch(err => {
             console.error("Hata oluştu:", err);
