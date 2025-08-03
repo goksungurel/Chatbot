@@ -75,10 +75,14 @@ Bu proje; sade bir arayüz, güçlü GPT desteği ve kolay özelleştirilebilir 
 
 
 
+---
+
+
 Model Seçimi:
 Kullanıcılar istediği modelle sohbet başlatabilir.
 
 <img width="1560" height="1123" alt="Screenshot 2025-08-03 at 19 03 25" src="https://github.com/user-attachments/assets/be5214ba-dd23-403c-87df-509701525346" />
+
 
 
 Emoji Desteği:
@@ -89,6 +93,7 @@ Mesaj kutusuna kolayca emoji eklenebilir.
 
 Karanlık Mod:
 Chatbot, gece kullanımına uygun koyu tema sunar.
+
 <img width="1560" height="1123" alt="Screenshot 2025-08-03 at 19 05 21" src="https://github.com/user-attachments/assets/cdde3ec7-0491-4723-97a4-68868bff0697" />
 
 
