@@ -1,4 +1,4 @@
-Chatbot — Talya Staj 2025**
+**Chatbot — Talya Staj 2025**
 
 Bu proje, Talya şirketi için 2025 yılında staj döneminde geliştirilmiş bir web tabanlı yapay zeka destekli chatbot uygulamasıdır. Kullanıcıdan gelen metin işlenerek AI tarafından yanıtlanır. HTML/CSS ile ile hazırlanmış arayüz, Node.js backend üzerinden OpenAI ile haberleşir.
 
