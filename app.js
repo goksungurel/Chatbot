@@ -1,13 +1,18 @@
-// Gerekli DOM elementlerini al
 const sendBtn = document.getElementById("send-btn");
 const userInput = document.getElementById("user-input");
 const chatMessages = document.getElementById("chat-messages");
 const typingIndicator = document.getElementById("typing-indicator");
+const modelSelect = document.getElementById("model-select");
+
+// Emoji butonu ve paneli seç
+const emojiBtn = document.getElementById("emoji-btn");
+const emojiPicker = document.getElementById("emoji-picker");
+const emojiCloseBtn = document.getElementById("emoji-close-btn");
+
 
 let messageHistory = [];
 const maxHistoryLength = 10;
 
-// Mesaj oluşturma
 function getCurrentTime() {
     const now = new Date();
     return now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
@@ -40,7 +45,6 @@ function createMessage(content, isUser = false) {
     return wrapper;
 }
 
-// Mesajı ekle
 function addMessage(content, isUser = false, delay = 0) {
     setTimeout(() => {
         const msgElement = createMessage(content, isUser);
@@ -49,7 +53,6 @@ function addMessage(content, isUser = false, delay = 0) {
     }, delay);
 }
 
-// Tiping indicator
 function showTypingIndicator() {
     typingIndicator.classList.add("show");
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -80,7 +83,8 @@ function sendMessage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             message,
-            history: messageHistory
+            history: messageHistory,
+            model: modelSelect.value
         })
     })
         .then(res => {
@@ -108,7 +112,6 @@ function sendMessage() {
     setTimeout(() => { sendBtn.style.transform = ""; }, 200);
 }
 
-// Olay dinleyicileri
 sendBtn.addEventListener("click", sendMessage);
 userInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
@@ -116,6 +119,7 @@ userInput.addEventListener("keypress", (e) => {
         sendMessage();
     }
 });
+
 userInput.addEventListener("input", (e) => {
     const length = e.target.value.length;
     sendBtn.style.background = length > 0
@@ -123,27 +127,49 @@ userInput.addEventListener("input", (e) => {
         : "linear-gradient(135deg, #667eea, #764ba2)";
 });
 
-// Shake animasyon ve mesaj geçiş animasyonu
-const style = document.createElement('style');
-style.textContent = `
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-.message-wrapper {
-    opacity: 0;
-    animation: messageSlide 0.4s ease-out forwards;
-}
-@keyframes messageSlide {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-`;
-document.head.appendChild(style);
-
 const toggleBtn = document.getElementById("toggle-theme");
 toggleBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark");
     toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
 });
+// Emoji panelini aç/kapat
+emojiBtn.addEventListener("click", () => {
+    emojiPicker.classList.toggle("show"); // CSS'teki .show class'ı paneli gösterir
+});
+
+// Kapat butonu
+emojiCloseBtn.addEventListener("click", () => {
+    emojiPicker.classList.remove("show");
+});
+
+// Basit örnek emojiler (istediğin kadar artırabilirsin)
+const emojiGrid = document.getElementById("emoji-grid");
+const emojis = [
+    // 😀 Yüz ifadeleri
+    "😀","😁","😂","🤣","😎","😍","😘","😜","🤔","😢","😡",
+
+    // 👍 Jestler
+    "👍","🙏","👋","🤚","👌","🤌","🤏","🤞","🤘","🤙",
+    "👈","👉","👆","👇","👎",
+
+    // ❤️ Kalpler & Kutlamalar
+    "🔥","🎉","❤️","🧡","💛","💚","💙","💜","🖤","🤍","🤎",
+    "💔","❣️","💕","💞","💓","💗","💖","💘","💝","💟","💌"
+];
+
+function loadEmojis() {
+    emojiGrid.innerHTML = "";
+    emojis.forEach(e => {
+        const btn = document.createElement("button");
+        btn.classList.add("emoji-item");
+        btn.textContent = e;
+        btn.addEventListener("click", () => {
+            userInput.value += e;   // Inputa ekle
+            emojiPicker.classList.remove("show"); // Paneli kapat
+        });
+        emojiGrid.appendChild(btn);
+    });
+}
+
+// Sayfa yüklenince emojileri doldur
+loadEmojis();

@@ -61,9 +61,10 @@ Asistan: Harika! İzmir'de denize yakın ve havuzlu oteller için Alsancak, Kona
 // Ana endpoint
 app.post('/chat', async (req, res) => {
     const userMessage = req.body.message;
-    const history=req.body.history || [];
-    console.log("Kullanıcıdan gelen mesaj:", userMessage);
+    const history = req.body.history || [];
+    const selectedModel = req.body.model || "gpt-3.5-turbo"; // 🔹 frontendten gelen model
 
+    console.log("Kullanıcıdan gelen mesaj:", userMessage, "Seçilen model:", selectedModel);
 
     if (!userMessage) {
         return res.status(400).json({ error: 'Mesaj eksik.' });
@@ -77,7 +78,7 @@ app.post('/chat', async (req, res) => {
                 "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
             },
             body: JSON.stringify({
-                model: "gpt-3.5-turbo",
+                model: selectedModel, // 🔹 kullanıcı hangi modeli seçtiyse o kullanılacak
                 messages: [
                     { role: "system", content: systemPrompt },
                     ...history.map(m => ({
@@ -86,13 +87,11 @@ app.post('/chat', async (req, res) => {
                     })),
                     { role: "user", content: userMessage }
                 ]
-
             })
-
         });
 
         const data = await response.json();
-        console.log("OpenAI'den gelen cevap:", data); // ✅ log
+        console.log("OpenAI'den gelen cevap:", data);
 
         if (data && data.choices && data.choices.length > 0) {
             const botReply = data.choices[0].message.content;
@@ -106,8 +105,8 @@ app.post('/chat', async (req, res) => {
         console.error('❌ Hata:', err);
         res.status(500).json({ error: 'Sunucu hatası.' });
     }
-
 });
+
 
 // Sunucuyu başlat
 app.listen(PORT, () => {

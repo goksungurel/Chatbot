@@ -9,6 +9,7 @@
 </head>
 <body>
 <button id="toggle-theme" class="theme-toggle">🌙</button>
+
 <div class="chat-container">
   <div class="chat-header">
     <div class="header-content">
@@ -36,9 +37,7 @@
         <i class="fas fa-robot"></i>
       </div>
       <div class="bot-message">
-        <div class="message-content">
-          Merhaba! Size nasıl yardımcı olabilirim?
-        </div>
+        <div class="message-content">Merhaba! Size nasıl yardımcı olabilirim?</div>
         <div class="message-time">Şimdi</div>
       </div>
     </div>
@@ -58,26 +57,14 @@
   </div>
 
   <div class="chat-input-container">
-    <div class="emoji-picker" id="emoji-picker">
-      <div class="emoji-picker-header">
-        <span>Emoji Seç</span>
-        <button class="emoji-close-btn" id="emoji-close-btn">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="emoji-categories" id="emoji-categories">
-        <button class="emoji-category-btn active" data-category="smileys">😀</button>
-        <button class="emoji-category-btn" data-category="people">👋</button>
-        <button class="emoji-category-btn" data-category="nature">🌸</button>
-        <button class="emoji-category-btn" data-category="food">🍕</button>
-        <button class="emoji-category-btn" data-category="travel">✈️</button>
-        <button class="emoji-category-btn" data-category="activities">cd ⚽</button>
-        <button class="emoji-category-btn" data-category="objects">💡</button>
-        <button class="emoji-category-btn" data-category="symbols">❤️</button>
-      </div>
-      <div class="emoji-grid" id="emoji-grid">
-        <!-- Emojiler JavaScript ile yüklenecek -->
-      </div>
+    <!-- 🔹 Model Seçme Alanı -->
+    <div class="model-selector">
+      <label for="model-select">Model:</label>
+      <select id="model-select">
+        <option value="gpt-4o">GPT-4o</option>
+        <option value="gpt-4o-mini">GPT-4o-mini</option>
+        <option value="gpt-3.5-turbo" selected>GPT-3.5 Turbo</option>
+      </select>
     </div>
 
     <div class="chat-input">
@@ -88,6 +75,16 @@
       <button id="send-btn" class="send-btn" title="Gönder">
         <i class="fas fa-paper-plane"></i>
       </button>
+    </div>
+    <!-- Emoji Paneli -->
+    <div class="emoji-picker" id="emoji-picker">
+      <div class="emoji-picker-header">
+        <span>Emoji Seç</span>
+        <button class="emoji-close-btn" id="emoji-close-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="emoji-grid" id="emoji-grid"></div>
     </div>
   </div>
 </div>
