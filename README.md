@@ -26,7 +26,7 @@ HTML5 & CSS3 — Kullanıcı arayüzü
 
 JavaScript — Dinamik işlevler
 
-OpenAI API — (Opsiyonel) Doğal dil işleme desteği
+OpenAI API —  Doğal dil işleme desteği
 
 **📁 Dosya Yapısı**
 
