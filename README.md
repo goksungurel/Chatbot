@@ -1,4 +1,4 @@
-**🤖 Yapay Zeka Chatbot — Talya Staj 2025**
+<img width="1560" height="1123" alt="Screenshot 2025-08-03 at 19 03 28" src="https://github.com/user-attachments/assets/7cec8ff1-7d29-494c-91a7-071eb888001a" />**🤖 Yapay Zeka Chatbot — Talya Staj 2025**
 
 Bu proje, Talya şirketi için 2025 yılında staj döneminde geliştirilmiş bir web tabanlı yapay zeka destekli chatbot uygulamasıdır. Kullanıcıdan gelen metin işlenerek AI tarafından yanıtlanır. HTML/CSS ile ile hazırlanmış arayüz, Node.js backend üzerinden OpenAI ile haberleşir.
 
@@ -73,4 +73,11 @@ Bu proje; sade bir arayüz, güçlü GPT desteği ve kolay özelleştirilebilir 
 
 -Sesli komut desteği ile konuşma tabanlı etkileşim sağlanabilir.
 
-<img width="1396" height="1074" alt="Screenshot 2025-07-24 at 11 33 33" src="https://github.com/user-attachments/assets/c4e36197-d322-425d-8dbd-56f284ace8e3" />
+<img width="1560" height="1123" alt="Screenshot 2025-08-03 at 19 03 25" src="https://github.com/user-attachments/assets/67a2f3bc-b5f6-455e-8c99-e9fb7666bc50" />
+
+<img width="1560" height="1123" alt="Screenshot 2025-08-03 at 19 03 28" src="https://github.com/user-attachments/assets/a3dfbde0-9751-422b-a245-58076aa544a1" />
+
+<img width="1560" height="1123" alt="Screenshot 2025-08-03 at 19 05 21" src="https://github.com/user-attachments/assets/0b7b8103-5e12-44a0-9842-45dc5d894e16" />
+
+
+
