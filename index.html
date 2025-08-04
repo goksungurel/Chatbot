@@ -2,28 +2,40 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <!-- 🔹 Sayfa Türkçe dilinde, UTF-8 karakter seti -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 🔹 Responsive tasarım için mobil uyumlu yapı -->
   <title>Chatbot</title>
+  <!-- 🔹 Harici CSS dosyan -->
   <link rel="stylesheet" href="style.css">
+  <!-- 🔹 Font Awesome ikonlarını kullanmak için -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+
+<!-- 🔹 Tema değiştirme butonu (gündüz/gece) -->
 <button id="toggle-theme" class="theme-toggle">🌙</button>
 
+<!-- 🔹 Ana chat kutusu -->
 <div class="chat-container">
+
+  <!-- 🔹 Üst başlık (Bot ismi, avatar, ayarlar butonu) -->
   <div class="chat-header">
     <div class="header-content">
       <div class="bot-avatar">
+        <!-- 🔹 Robot simgesi -->
         <i class="fas fa-robot"></i>
       </div>
       <div class="header-info">
         <h3>Akıllı Asistan</h3>
+        <!-- 🔹 Çevrimiçi durum göstergesi -->
         <span class="status">
           <div class="status-dot"></div>
           Çevrimiçi
         </span>
       </div>
       <div class="header-actions">
+        <!-- 🔹 Ayarlar butonu -->
         <button class="action-btn" title="Ayarlar">
           <i class="fas fa-cog"></i>
         </button>
@@ -31,7 +43,9 @@
     </div>
   </div>
 
+  <!-- 🔹 Mesajlar alanı -->
   <div class="chat-messages" id="chat-messages">
+    <!-- 🔹 İlk karşılama mesajı -->
     <div class="message-wrapper bot-wrapper">
       <div class="message-avatar">
         <i class="fas fa-robot"></i>
@@ -43,6 +57,7 @@
     </div>
   </div>
 
+  <!-- 🔹 Yazıyor animasyonu -->
   <div class="typing-indicator" id="typing-indicator">
     <div class="typing-avatar">
       <i class="fas fa-robot"></i>
@@ -52,43 +67,53 @@
         <span></span>
         <span></span>
         <span></span>
+        <!-- 🔹 3 nokta ile botun yazdığını simüle eder -->
       </div>
     </div>
   </div>
 
+  <!-- 🔹 Kullanıcı giriş alanı -->
   <div class="chat-input-container">
-    <!-- 🔹 Model Seçme Alanı -->
+    <!-- 🔹 Model Seçici -->
     <div class="model-selector">
       <label for="model-select">Model:</label>
       <select id="model-select">
+        <!-- 🔹 Kullanılacak AI model seçenekleri -->
         <option value="gpt-4o">GPT-4o</option>
         <option value="gpt-4o-mini">GPT-4o-mini</option>
         <option value="gpt-3.5-turbo" selected>GPT-3.5 Turbo</option>
       </select>
     </div>
 
+    <!-- 🔹 Mesaj kutusu ve butonlar -->
     <div class="chat-input">
       <input type="text" id="user-input" placeholder="Mesajınızı yazın..." autocomplete="off">
+      <!-- 🔹 Emoji açma butonu -->
       <button class="emoji-btn" title="Emoji" id="emoji-btn">
         <i class="fas fa-smile"></i>
       </button>
+      <!-- 🔹 Mesaj gönderme butonu -->
       <button id="send-btn" class="send-btn" title="Gönder">
         <i class="fas fa-paper-plane"></i>
       </button>
     </div>
-    <!-- Emoji Paneli -->
+
+    <!-- 🔹 Emoji paneli -->
     <div class="emoji-picker" id="emoji-picker">
       <div class="emoji-picker-header">
         <span>Emoji Seç</span>
+        <!-- 🔹 Paneli kapatma butonu -->
         <button class="emoji-close-btn" id="emoji-close-btn">
           <i class="fas fa-times"></i>
         </button>
       </div>
+      <!-- 🔹 Emojilerin listeleneceği alan -->
       <div class="emoji-grid" id="emoji-grid"></div>
     </div>
   </div>
 </div>
 
+<!-- 🔹 Chatbot’un çalışması için JS dosyası -->
 <script src="app.js"></script>
 </body>
 </html>

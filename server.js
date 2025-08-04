@@ -3,7 +3,6 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
-console.log("🧪 API KEY:", process.env.OPENAI_API_KEY);
 
 // ✅ fetch için doğru tanım (Node 18+ için)
 const fetch = (...args) =>
@@ -58,19 +57,25 @@ Asistan: Harika! İzmir'de denize yakın ve havuzlu oteller için Alsancak, Kona
 
 `;
 
-// Ana endpoint
+      // Ana endpoint
 app.post('/chat', async (req, res) => {
+    //gelen veriyi alıyoruz
     const userMessage = req.body.message;
     const history = req.body.history || [];
     const selectedModel = req.body.model || "gpt-3.5-turbo"; // 🔹 frontendten gelen model
 
     console.log("Kullanıcıdan gelen mesaj:", userMessage, "Seçilen model:", selectedModel);
 
+    //Mesaj Boşsa Hata Döndür
     if (!userMessage) {
         return res.status(400).json({ error: 'Mesaj eksik.' });
     }
+    // 400 İstek hatalı veya eksik veri
+    //stemci (frontend) yanlış veya eksik veri gönderirse sunucu bunu fark eder.
+
 
     try {
+        // OpenAI API’ye İstek Atma
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
@@ -89,9 +94,16 @@ app.post('/chat', async (req, res) => {
                 ]
             })
         });
-
+        // gelen cevabı json a çevirriyoruz
         const data = await response.json();
         console.log("OpenAI'den gelen cevap:", data);
+
+
+        // choices → OpenAI Chat API’nin verdiği olası cevaplar listesidir (dizi)
+        //Yani modelin ürettiği yanıt(lar) burada tutulur.
+            /* choices → Modelin verdiği tüm yanıtları tutan dizi
+            choices[0] → İlk yanıt
+            choices[0].message.content → Botun yazdığı cümlenin kendisi*/
 
         if (data && data.choices && data.choices.length > 0) {
             const botReply = data.choices[0].message.content;

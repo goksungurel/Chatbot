@@ -1,88 +1,106 @@
 /* 🌟 Modern Chatbot Styles */
+
+/* 🔹 Tüm elementler için kutu modelini border-box yapar
+   Bu sayede padding ve border, genişlik hesaplamasına dahil olur */
 * {
     box-sizing: border-box;
 }
 
+/* 🔹 Sayfa genel ayarları */
 body {
-    min-height: 100vh;
+    min-height: 100vh; /* Tüm ekranı kaplasın */
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #667eea, #764ba2, #6ee7b7);
-    background-size: 600% 600%;
-    animation: gradientMove 15s ease infinite;
+    justify-content: center; /* Ortala yatay */
+    align-items: center;     /* Ortala dikey */
+    background: linear-gradient(135deg, #667eea, #764ba2, #6ee7b7); /* Gradient arka plan */
+    background-size: 600% 600%; /* Animasyon için genişlet */
+    animation: gradientMove 15s ease infinite; /* Gradient hareket etsin */
     padding: 20px;
 }
+
+/* 🔹 Gradient arka plan animasyonu */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Chat Container */
+/* Chat Container - Ana kutu */
 .chat-container {
     width: 700px;
     height: 850px;
-    max-width: 95%;
+    max-width: 95%;       /* Küçük ekranlarda responsive */
     max-height: 95vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Dikeyde içerik */
     border-radius: 28px;
-    overflow: hidden;
-    animation: slideIn 0.6s ease-out;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
+    overflow: hidden;        /* Taşan içerik gözükmesin */
+    animation: slideIn 0.6s ease-out; /* Giriş animasyonu */
+    background: rgba(255, 255, 255, 0.15); /* Cam efekti */
+    backdrop-filter: blur(20px);           /* Cam blur efekti */
     border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    position: relative; /* Emoji paneli konteynerin içinde kalsın */
-
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* Gölge efekti */
+    position: relative; /* Emoji paneli içinde konumlanabilsin */
 }
+
+/* Giriş animasyonu */
 @keyframes slideIn {
     from { opacity: 0; transform: translateY(30px) scale(0.9); }
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Header */
+/* ---------------- HEADER ---------------- */
 .chat-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient başlık */
     color: white;
     padding: 20px;
     position: relative;
     overflow: hidden;
 }
+
+/* Başlığa hafif ışık efekti */
 .chat-header::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
 }
+
 .header-content { display: flex; align-items: center; position: relative; z-index: 1; }
+
+/* Bot avatarı */
 .bot-avatar {
     width: 48px; height: 48px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     margin-right: 15px; font-size: 20px;
-    animation: pulse 2s infinite;
+    animation: pulse 2s infinite; /* Hafif büyüyüp küçülen animasyon */
 }
+
+/* Nabız efekti */
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
 .header-info { flex: 1; }
 .header-info h3 { margin: 0; font-size: 18px; font-weight: 600; }
 
+/* Çevrimiçi durum */
 .status { display: flex; align-items: center; font-size: 12px; opacity: 0.9; margin-top: 4px; }
 .status-dot {
     width: 8px; height: 8px;
-    background: #4ade80;
-    border-radius: 50%;
+    background: #4ade80;       /* Yeşil */
+    border-radius: 50%;        /* Yuvarlak nokta */
     margin-right: 6px;
     animation: statusBlink 2s infinite;
 }
 @keyframes statusBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
+/* Sağ üstteki butonlar (ayarlar vs.) */
 .header-actions { display: flex; gap: 10px; }
+
+/* Buton stili */
 .action-btn {
     width: 36px; height: 36px;
     background: rgba(255, 255, 255, 0.2);
@@ -91,20 +109,24 @@ body {
     display: flex; align-items: center; justify-content: center;
     transition: all 0.3s ease;
 }
+/* 🔹 Hover olunca biraz döner ve parlaklaşır */
 .action-btn:hover { background: rgba(255,255,255,0.3); transform: rotate(90deg); }
 
-/* Messages Area */
+/* ---------------- MESAJ ALANI ---------------- */
 .chat-messages {
     flex: 1;
     padding: 25px 30px;
-    overflow-y: auto;
+    overflow-y: auto;  /* Scroll */
     background: linear-gradient(to bottom, #fafafa, #f0f0f0);
     display: flex; flex-direction: column;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Yumuşak kaydırma */
 }
+
+/* Scrollbar tasarımı */
 .chat-messages::-webkit-scrollbar { width: 6px; }
 .chat-messages::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
 
+/* Mesaj kutuları animasyonu */
 .message-wrapper {
     display: flex;
     margin-bottom: 20px;
@@ -145,19 +167,23 @@ body {
 .message-time { font-size: 10px; color: #999; margin-top: 4px; text-align: right; }
 .user-message .message-time { color: rgba(255,255,255,0.7); }
 
-/* Typing Indicator */
+/* ---------------- YAZIYOR ANİMASYONU ---------------- */
 .typing-indicator { display: none; padding: 0 20px 20px; align-items: center; }
 .typing-indicator.show { display: flex; animation: pulse 1.5s infinite; }
+
 .typing-avatar {
     width: 32px; height: 32px; border-radius: 50%;
     background: linear-gradient(135deg, #667eea, #764ba2); color: white;
     display: flex; align-items: center; justify-content: center; font-size: 14px;
     margin-right: 12px;
 }
+
 .typing-bubble {
     background: white; padding: 12px 16px; border-radius: 18px 18px 18px 4px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.1);
 }
+
+/* 3 Nokta Animasyonu */
 .typing-dots { display: flex; gap: 4px; }
 .typing-dots span {
     width: 6px; height: 6px; background: #999; border-radius: 50%;
@@ -170,7 +196,7 @@ body {
     30% { transform: translateY(-10px); opacity: 1; }
 }
 
-/* Input Area */
+/* ---------------- GİRİŞ ALANI ---------------- */
 .chat-input-container {
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
@@ -203,12 +229,10 @@ body {
 .send-btn:hover { transform: scale(1.05) rotate(15deg); box-shadow: 0 6px 25px rgba(102,126,234,0.4); }
 .send-btn:active { transform: scale(0.95); }
 
-
-
-/* Emoji paneli */
+/* ---------------- EMOJI PANELİ ---------------- */
 .emoji-picker {
     position: absolute;
-    bottom: 80px;           /* Inputun biraz üstünde */
+    bottom: 80px;  /* Inputun biraz üstünde */
     right: 20px;
     background: white;
     border-radius: 16px;
@@ -219,11 +243,11 @@ body {
     z-index: 1000;
     display: none;
     overflow: hidden;
-    flex-direction: column; /* İçerikler dikey */
+    flex-direction: column;
 }
 
 .emoji-picker.show {
-    display: flex; /* Grid üstte, aşağı kayar */
+    display: flex; /* Gösterildiğinde flex olur */
 }
 
 .emoji-picker-header {
@@ -262,133 +286,38 @@ body {
     transform: scale(1.2);
 }
 
-
-
-
-/* Model Selector */
+/* ---------------- MODEL SEÇİCİ ---------------- */
 .model-selector {
     display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
 }
 .model-selector label { font-size: 14px; font-weight: 600; }
 .model-selector select { padding: 5px 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
 
-/* 🌙 Dark Mode */
-/* 🌙 ChatGPT Style Dark Mode */
-body.dark {
-    background: #272626; /* Daha koyu arka plan */
-    color: #e0e0e0;
-    transition: background 0.4s ease, color 0.4s ease;
-}
+/* ---------------- DARK MODE ---------------- */
+body.dark { background: #272626; color: #e0e0e0; transition: background 0.4s ease, color 0.4s ease; }
+body.dark .chat-container { background: #1a1a1a; border: 1px solid #2a2a2a; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
+body.dark .chat-messages { background: #1a1a1a; color: #e0e0e0; }
+body.dark .bot-message .message-content { background: #2a2a2a; color: #e0e0e0; border-radius: 12px; border: 1px solid #333; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+body.dark .user-message .message-content { background: linear-gradient(135deg, #a2a2bd, #646465); color: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+body.dark .message-time { color: #aaa; }
+body.dark .chat-input-container { background: #111; border-top: 1px solid #2a2a2a; }
+body.dark .chat-input { background: #222; border: 1px solid #333; }
+body.dark .chat-input input { color: #eee; }
+body.dark .chat-input input::placeholder { color: #777; }
+body.dark .send-btn { background: linear-gradient(135deg, #595656, #b2a4b3); box-shadow: 0 4px 15px rgba(90, 90, 247, 0.3); }
+body.dark .emoji-picker { background: #1f1f1f; border: 1px solid #333; }
+body.dark .chat-header{ background: #1f1f1f; color: #e0e0e0; border-bottom: 1px solid #333; }
+body.dark .bot-avatar { background: #2a2a2a; color: #9fa2ff; }
+body.dark .typing-bubble { background: #2a2a2a; color: white; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
 
-/* Chat kutusu */
-body.dark .chat-container {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    box-shadow: 0 0 30px rgba(0,0,0,0.6);
-}
-
-/* Mesaj alanı */
-body.dark .chat-messages {
-    background: #1a1a1a;
-    color: #e0e0e0;
-}
-
-/* Bot mesajları */
-body.dark .bot-message .message-content {
-    background: #2a2a2a;  /* ChatGPT bot balonu */
-    color: #e0e0e0;
-    border-radius: 12px;
-    border: 1px solid #333;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-/* Kullanıcı mesajları */
-body.dark .user-message .message-content {
-    background: linear-gradient(135deg, #a2a2bd, #646465); /* Mor-mavi gradient */
-    color: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-/* Zaman etiketi */
-body.dark .message-time {
-    color: #aaa;
-}
-
-/* Input alanı */
-body.dark .chat-input-container {
-    background: #111;
-    border-top: 1px solid #2a2a2a;
-}
-body.dark .chat-input {
-    background: #222;
-    border: 1px solid #333;
-}
-body.dark .chat-input input {
-    color: #eee;
-}
-body.dark .chat-input input::placeholder {
-    color: #777;
-}
-
-/* Gönder butonu */
-body.dark .send-btn {
-    background: linear-gradient(135deg, #595656, #b2a4b3);
-    box-shadow: 0 4px 15px rgba(90, 90, 247, 0.3);
-}
-
-/* Emoji paneli */
-body.dark .emoji-picker {
-    background: #1f1f1f;
-    border: 1px solid #333;
-}
-body.dark .emoji-category-btn {
-    background: #333;
-    color: #595656;
-}
-body.dark .emoji-category-btn.active {
-    background: #5a5af7;
-}
-body.dark .chat-header{
-    background: #1f1f1f;          /* Daha koyu gri */
-    color: #e0e0e0;
-    border-bottom: 1px solid #333; /* Hafif alt çizgi */
-
-}
-/* Bot avatarı dark mode'da daha mat */
-body.dark .bot-avatar {
-    background: #2a2a2a;
-    color: #9fa2ff; /* Hafif morumsu ikon rengi */
-}
-/* Yazıyor balonu */
-body.dark .typing-bubble {
-    background: #2a2a2a;
-    color: white;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-
-/* 🌗 Tema geçiş butonu */
+/* Tema geçiş butonu */
 .theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #222;
-    color: #ffd700; /* 🌙 Güneş/Ay sarı */
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;            /* İkon ortalansın */
-    align-items: center;
-    justify-content: center;
+    position: absolute; top: 20px; right: 20px;
+    background: #222; color: #ffd700; /* Sarı ay/güneş */
+    border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 18px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     z-index: 1000;
     transition: background 0.3s, color 0.3s;
 }
-.theme-toggle:hover {
-    background: #333;
-}
-
+.theme-toggle:hover { background: #333; }
