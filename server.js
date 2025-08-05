@@ -13,7 +13,7 @@ const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static(__dirname));//frontend dosyası
 
 const systemPrompt = `
 Sen hangi dilde mesaj gelirse o dilde cevap veren ,çeviri yapman istenirse çeviri yapabilen , kullanıcı dostu bir yapay zeka sohbet asistanısın. 
@@ -58,7 +58,7 @@ Asistan: Harika! İzmir'de denize yakın ve havuzlu oteller için Alsancak, Kona
 `;
 
       // Ana endpoint
-app.post('/chat', async (req, res) => {
+ app.post('/chat', async (req, res) => {
     //gelen veriyi alıyoruz
     const userMessage = req.body.message;
     const history = req.body.history || [];

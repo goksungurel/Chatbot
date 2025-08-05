@@ -1,4 +1,5 @@
 //HTML öğelerini seçiyoruz
+//getElementById metodu, belirtilen id'ye sahip HTML öğesini alır ve JavaScript kodu içinde kullanılmasını sağlar.
 const sendBtn = document.getElementById("send-btn");
 const userInput = document.getElementById("user-input");
 const chatMessages = document.getElementById("chat-messages");
@@ -66,12 +67,13 @@ function hideTypingIndicator() {
     typingIndicator.classList.remove("show"); //show sınıfını kaldırıyoruz
 }
 
+//Butona tıklayınca veya Enter tuşuna basınca çalışıyor. addEventListener ile bağladım.
 function sendMessage() {
     const message = userInput.value.trim(); //Kullanıcıdan gelen mesajı alıyoruz
     if (!message) {
         userInput.style.animation = "shake 0.5s ease-in-out";
         setTimeout(() => { userInput.style.animation = ""; }, 500);
-        return;
+        return; //“Boş mesaj gönderilmemesi için fonksiyonu durduruyorum.”
     }
 
     addMessage(message, true); //kullanıcı mesajını ekle
@@ -81,6 +83,14 @@ function sendMessage() {
     if (messageHistory.length > maxHistoryLength) { //geçmişin uzunkupunu kontrol et
         messageHistory.shift(); //eğer fazla mesaj varsa ilkini sil
     }
+
+    /*“sendMessage fonksiyonu, mesaj gönderme sürecini yönetir.
+        Önce kullanıcı inputunu alıp boş mu diye kontrol ediyorum.
+        Boşsa inputu sallayan bir animasyon gösterip fonksiyonu durduruyorum.
+        Doluysa mesajı ekrana basıyorum, botun yazıyor efektini başlatıyorum,
+        ve mesajı messageHistory dizisine kaydediyorum.
+        Eğer geçmiş 10’dan fazla olursa shift() ile en eski mesajı siliyorum.”*/
+
 
     //frontend (tarafında Node.js backend’ine POST isteği atan kısım.
 
@@ -120,6 +130,7 @@ function sendMessage() {
 
 //Gönder butonuna tıklanınca mesaj gönder
 sendBtn.addEventListener("click", sendMessage);
+
 //enter tuşuna basıldığında da mesaj gönder
 userInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
@@ -142,6 +153,7 @@ toggleBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark");
     toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
 });
+
 // Emoji panelini aç/kapat
 emojiBtn.addEventListener("click", () => {
     emojiPicker.classList.toggle("show"); // CSS'teki .show class'ı paneli gösterir
