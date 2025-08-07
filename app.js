@@ -70,6 +70,7 @@ function hideTypingIndicator() {
 //Butona tıklayınca veya Enter tuşuna basınca çalışıyor. addEventListener ile bağladım.
 function sendMessage() {
     const message = userInput.value.trim(); //Kullanıcıdan gelen mesajı alıyoruz
+
     if (!message) {
         userInput.style.animation = "shake 0.5s ease-in-out";
         setTimeout(() => { userInput.style.animation = ""; }, 500);
@@ -124,6 +125,7 @@ function sendMessage() {
         });
 
     userInput.value = "";  //Input alanını temizle
+
     sendBtn.style.transform = "scale(0.9) rotate(45deg)";  // Gönder butonuna animasyon ekle
     setTimeout(() => { sendBtn.style.transform = ""; }, 200); // 200 ms sonra animasyonu kaldır
 }
