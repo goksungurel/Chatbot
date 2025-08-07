@@ -81,4 +81,7 @@ Bu proje; sade bir arayüz, güçlü GPT desteği ve kolay özelleştirilebilir 
 <img width="1491" height="1123" alt="Screenshot 2025-08-07 at 22 23 32" src="https://github.com/user-attachments/assets/fd5a57a0-1b54-4811-9a51-1de8d53beb9a" />
 
 
+<img width="1491" height="1123" alt="Screenshot 2025-08-07 at 22 25 48" src="https://github.com/user-attachments/assets/a9096a9b-5af3-4bb3-bb98-59bdd351dc1b" />
+
+
 
