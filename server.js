@@ -65,6 +65,10 @@ If the user writes any message that seems like a sentence or paragraph, and asks
 - Return only the rewritten message without explanation.
 
 
+Always answer in the same language the user used in their message. Only translate if explicitly asked.
+
+
+
 `;
 
       // Ana endpoint
